@@ -25,3 +25,22 @@ export const ListHeaderTitle = styled.h2`
   font-weight: 600;
   font-size: 16px;
 `
+
+export const ListAdd  = styled.div`
+  width: 100%;
+  height: 50px;
+  max-width: 272px;
+  border: 4px dashed #f8f8f8;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cdccca;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: noner;
+
+  span {
+    margin-left: 10px;
+  }
+`

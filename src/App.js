@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
+/** icons */
+import { BiPlusCircle } from "react-icons/bi";
+
 /** product */
 import produce from 'immer'
 
@@ -11,6 +14,8 @@ import {HTML5Backend} from 'react-dnd-html5-backend'
 import Header from './components/Header';
 import List from './components/List';
 import Container from './components/Container';
+import { ListAdd } from './components/List/styled';
+
 
 
 /** globalStyle */
@@ -18,6 +23,8 @@ import GlobalStyle from './styles/globalStlye';
 
 /** axios */
 import axios from 'axios'
+
+/** context */
 import ListContext from './context/listContext';
 
 function App() {
@@ -54,6 +61,10 @@ function App() {
           {lists && lists.map( (item, index) => (
             <List cards={item.cards} index={index}  title={item.title} />
           ) )}
+          <ListAdd>
+            <BiPlusCircle color="#cdccca"  fontSize={20} />
+            <span>Adicionar outra lista</span>
+          </ListAdd>
         </Container>
       </ListContext.Provider>
       <GlobalStyle />
