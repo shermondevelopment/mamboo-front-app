@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react'
+import React, { useRef, useContext, useState } from 'react'
 
 /** context */
 import ListContext from '../../context/listContext'
@@ -12,9 +12,11 @@ import { useDrag, useDrop } from 'react-dnd'
 /** components styled */
 import * as S from './styled'
 import axios from 'axios';
+import EditContentCard from '../EditContentCard';
 
 const Card = ({ content, id, index, listIndex, idList }) => {
   const { move, setUpdateList, updateList } = useContext(ListContext)
+  const [openModalEditCard, setOpenModalEditCard] = useState(false)
 
   const deleteCard = async (id) => {
     try {
@@ -47,7 +49,6 @@ const Card = ({ content, id, index, listIndex, idList }) => {
     accept: 'CARD',
     hover (item, monitor) {
 
-      console.log('shermon', item.idList, idList)
 
       const draggedListIndex = item.listIndex
 
@@ -101,9 +102,10 @@ const Card = ({ content, id, index, listIndex, idList }) => {
       <S.Label color="#f8bd1c" className='label'></S.Label>
       <S.Label color="#891be8" className='label'></S.Label>
     </S.AreaLabel>
-    <S.AreaText>
+    <S.AreaText onDoubleClick={() => setOpenModalEditCard(true)}>
       {content}
     </S.AreaText>
+    <EditContentCard modalIsOpen={openModalEditCard} onRequestClose={() => setOpenModalEditCard(false)} content={content} idCard={id} />
   </S.Content>
  )
 }

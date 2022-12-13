@@ -46,6 +46,13 @@ export const AreaText = styled.p`
   padding: 10px 5px;
   cursor: pointer;
   word-break: break-all;
+  transition: all 0.4s linear;
+  border-radius: 6px;
+  margin-top: 25px;
+
+  &:hover {
+    background: #cdccca;
+  }
 
   ${props => props.contentEditable && css`
       border: dashed 2px #c3c3c3;
