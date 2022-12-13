@@ -59,7 +59,7 @@ function App() {
   return (
     <DndProvider backend={HTML5Backend}>
       <Header />
-      <ListContext.Provider value={{ lists, move }}>
+      <ListContext.Provider value={{ lists, move, setUpdateList, updateList }}>
         <Container>
           {lists && lists.map( (item, index) => (
             <List cards={item.cards} index={index}  title={item.title} />

@@ -18,7 +18,7 @@ const List = ({ title, cards, index:listIndex }) => {
         <SlOptions color="#CDCCCA" fontSize="24px" cursor="pointer" />
       </S.ListHeader>
       {cards.map((item, index) => (
-        <Card content={item.content} index={index} listIndex={listIndex}  />
+        <Card content={item.content} index={index} listIndex={listIndex} id={item._id}  />
       ))}
     </S.ListContainer>
   )

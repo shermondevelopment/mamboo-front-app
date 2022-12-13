@@ -10,6 +10,7 @@ export const Content = styled.section`
   transition: all 0.3s linear;
   user-select: none;
   cursor: grab;
+  position: relative;;
 
   ${props => props.isDragging && css`
     border: 2px dashed #c3c3c3;
@@ -51,4 +52,19 @@ export const AreaText = styled.p`
       outline: none;
   `}
 
+`
+
+export const DeleteCardArea =  styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #d0cfcd;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 `
