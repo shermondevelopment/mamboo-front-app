@@ -1,4 +1,5 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
 
 
 /** modal */
@@ -26,7 +27,21 @@ const customStyles = {
 
 
 
-const AddList = ({ modalIsOpen, onRequestClose  }) => {
+const AddList = ({ modalIsOpen, onRequestClose, updateList, setUpdateList  }) => {
+
+  const [listTitle, setListTitle] = useState('')
+
+  async function saveList () {
+    try {
+      await axios.post('http://localhost:3001/new/list', { title: listTitle })
+      setListTitle('')
+      setUpdateList(!updateList)
+      onRequestClose()
+    } catch (error) {
+      alert('erro o adicionar lista', error.response?.data?.error)
+    }
+  }
+
   return (
     <>
       <Modal
@@ -35,8 +50,8 @@ const AddList = ({ modalIsOpen, onRequestClose  }) => {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <S.Input placeholder="Informe o título" />
-        <S.Button>Adicionar</S.Button>
+        <S.Input placeholder="Informe o título" value={listTitle} onChange={(e) => setListTitle(e.currentTarget.value)} />
+        <S.Button onClick={saveList}>Adicionar</S.Button>
       </Modal>
     </>
   )

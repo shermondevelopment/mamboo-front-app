@@ -32,6 +32,7 @@ function App() {
 
   const [openModalAddList, setOpenModalAddList] = useState(false)
   const [lists, setLists] = useState()
+  const [updateList, setUpdateList] = useState(false)
 
   function move(fromList, toList, from, to) {
     setLists(produce(lists, draft => {
@@ -53,7 +54,7 @@ function App() {
 
   useEffect(() => {
     sarchList()
-  }, [])
+  }, [updateList])
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -67,7 +68,7 @@ function App() {
             <BiPlusCircle color="#cdccca"  fontSize={20} />
             <span>Adicionar outra lista</span>
           </ListAdd>
-          <AddList modalIsOpen={openModalAddList}  onRequestClose={() => setOpenModalAddList(false)} />
+          <AddList modalIsOpen={openModalAddList}  onRequestClose={() => setOpenModalAddList(false)} setUpdateList={setUpdateList} updateList={updateList} />
         </Container>
       </ListContext.Provider>
       <GlobalStyle />
