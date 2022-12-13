@@ -17,8 +17,8 @@ const List = ({ title, cards }) => {
         <S.ListHeaderTitle>{title}</S.ListHeaderTitle>
         <SlOptions color="#CDCCCA" fontSize="24px" cursor="pointer" />
       </S.ListHeader>
-      {cards.map(item => (
-        <Card content={item.content} />
+      {cards.map((item, index) => (
+        <Card content={item.content} index={index} id={index + 1} />
       ))}
     </S.ListContainer>
   )
