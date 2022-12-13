@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
+/** product */
+import produce from 'immer'
+
 /** react-dnd */
 import { DndProvider } from 'react-dnd'
 import {HTML5Backend} from 'react-dnd-html5-backend'
@@ -21,8 +24,13 @@ function App() {
 
   const [lists, setLists] = useState()
 
-  function move(from, to) {
+  function move(fromList, toList, from, to) {
+    setLists(produce(lists, draft => {
+      const dragged = draft[fromList].cards[from]
 
+      draft[fromList].cards.splice(from, 1)
+      draft[toList].cards.splice(to, 0, dragged)
+    }))
   }
 
   const sarchList = async () => {
@@ -43,8 +51,8 @@ function App() {
       <Header />
       <ListContext.Provider value={{ lists, move }}>
         <Container>
-          {lists && lists.map( item => (
-            <List cards={item.cards} title={item.title} />
+          {lists && lists.map( (item, index) => (
+            <List cards={item.cards} index={index}  title={item.title} />
           ) )}
         </Container>
       </ListContext.Provider>

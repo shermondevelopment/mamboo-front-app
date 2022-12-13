@@ -9,7 +9,7 @@ import { SlOptions } from "react-icons/sl";
 /** components */
 import Card from '../Card';
 
-const List = ({ title, cards }) => {
+const List = ({ title, cards, index:listIndex }) => {
 
   return (
     <S.ListContainer>
@@ -18,7 +18,7 @@ const List = ({ title, cards }) => {
         <SlOptions color="#CDCCCA" fontSize="24px" cursor="pointer" />
       </S.ListHeader>
       {cards.map((item, index) => (
-        <Card content={item.content} index={index} id={index + 1} />
+        <Card content={item.content} index={index} listIndex={listIndex}  />
       ))}
     </S.ListContainer>
   )
