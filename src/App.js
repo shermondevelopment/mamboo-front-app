@@ -62,7 +62,7 @@ function App() {
       <ListContext.Provider value={{ lists, move, setUpdateList, updateList }}>
         <Container>
           {lists && lists.map( (item, index) => (
-            <List cards={item.cards} index={index}  title={item.title} />
+            <List cards={item.cards} index={index}  title={item.title}  id={item._id} />
           ) )}
           <ListAdd onClick={() => setOpenModalAddList(true)}>
             <BiPlusCircle color="#cdccca"  fontSize={20} />

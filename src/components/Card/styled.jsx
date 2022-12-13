@@ -57,7 +57,7 @@ export const AreaText = styled.p`
 export const DeleteCardArea =  styled.div`
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 15px;
   background: #d0cfcd;
   padding: 5px;
   width: 30px;

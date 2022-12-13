@@ -13,8 +13,7 @@ import { useDrag, useDrop } from 'react-dnd'
 import * as S from './styled'
 import axios from 'axios';
 
-const Card = ({ content, id, index, listIndex }) => {
- console.log(id)
+const Card = ({ content, id, index, listIndex, idList }) => {
   const { move, setUpdateList, updateList } = useContext(ListContext)
 
   const deleteCard = async (id) => {
@@ -26,10 +25,18 @@ const Card = ({ content, id, index, listIndex }) => {
     }
   }
 
+  const moveCardApi = async (id_list_move_card, id_card) => {
+    try {
+      await axios.put(`http://localhost:3001/card/${id_card}`, { list_id: id_list_move_card })
+    } catch (error) {
+      alert('erro ao deletar card')
+    }
+  }
+
   const ref = useRef()
 
   const [{ isDragging }, dragRef] = useDrag({
-    item: { id, index, listIndex },
+    item: { id, index, listIndex, idList },
     type: 'CARD',
     collect: monitor => ({
       isDragging: monitor.isDragging()
@@ -39,6 +46,8 @@ const Card = ({ content, id, index, listIndex }) => {
   const [, dropRef] = useDrop({
     accept: 'CARD',
     hover (item, monitor) {
+
+      console.log('shermon', item.idList, idList)
 
       const draggedListIndex = item.listIndex
 
@@ -73,7 +82,12 @@ const Card = ({ content, id, index, listIndex }) => {
       item.listIndex = targetListIndex
 
       
-    }
+    },
+    drop (item, monitor) {
+      if(item.idList !== idList) {
+        moveCardApi(idList, id)
+      }
+    },
   })
 
   dragRef(dropRef(ref))
