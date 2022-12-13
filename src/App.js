@@ -15,10 +15,15 @@ import GlobalStyle from './styles/globalStlye';
 
 /** axios */
 import axios from 'axios'
+import ListContext from './context/listContext';
 
 function App() {
 
   const [lists, setLists] = useState()
+
+  function move(from, to) {
+
+  }
 
   const sarchList = async () => {
     try {
@@ -36,11 +41,13 @@ function App() {
   return (
     <DndProvider backend={HTML5Backend}>
       <Header />
-      <Container>
-        {lists && lists.map( item => (
-          <List cards={item.cards} title={item.title} />
-        ) )}
-      </Container>
+      <ListContext.Provider value={{ move }}>
+        <Container>
+          {lists && lists.map( item => (
+            <List cards={item.cards} title={item.title} />
+          ) )}
+        </Container>
+      </ListContext.Provider>
       <GlobalStyle />
     </DndProvider>
   );
