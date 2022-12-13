@@ -1,4 +1,7 @@
-import React, { useRef } from 'react'
+import React, { useRef, useContext } from 'react'
+
+/** context */
+import ListContext from '../../context/listContext'
 
 /** react-dnd */
 import { useDrag, useDrop } from 'react-dnd'
@@ -7,6 +10,8 @@ import { useDrag, useDrop } from 'react-dnd'
 import * as S from './styled'
 
 const Card = ({ content, id, index }) => {
+
+  const { move } = useContext(ListContext)
 
   const ref = useRef()
 
@@ -41,6 +46,8 @@ const Card = ({ content, id, index }) => {
       if(draggedIndex > targetIndex && draggedTop > targetCenter) {
         return;
       }
+
+      move(draggedIndex, targetIndex)
 
       console.log(targetSize)
     }
