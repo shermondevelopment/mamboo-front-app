@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
+/** react-dnd */
+import { DndProvider } from 'react-dnd'
+import {HTML5Backend} from 'react-dnd-html5-backend'
+
 /** components */
 import Header from './components/Header';
 import List from './components/List';
@@ -30,7 +34,7 @@ function App() {
   }, [])
 
   return (
-    <>
+    <DndProvider backend={HTML5Backend}>
       <Header />
       <Container>
         {lists && lists.map( item => (
@@ -38,7 +42,7 @@ function App() {
         ) )}
       </Container>
       <GlobalStyle />
-    </>
+    </DndProvider>
   );
 }
 
