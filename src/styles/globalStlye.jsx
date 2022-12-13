@@ -10,6 +10,14 @@ const GlobalStyle = createGlobalStyle`
   font-family: 'Popins', sans-serif;
  }
 
+ body {
+  height: 100%;
+ }
+
+ #root {
+  height: inherit;
+ }
+
 `
 
 export default GlobalStyle
