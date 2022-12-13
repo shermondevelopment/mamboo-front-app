@@ -26,9 +26,11 @@ import axios from 'axios'
 
 /** context */
 import ListContext from './context/listContext';
+import AddList from './components/AddListModal';
 
 function App() {
 
+  const [openModalAddList, setOpenModalAddList] = useState(false)
   const [lists, setLists] = useState()
 
   function move(fromList, toList, from, to) {
@@ -61,10 +63,11 @@ function App() {
           {lists && lists.map( (item, index) => (
             <List cards={item.cards} index={index}  title={item.title} />
           ) )}
-          <ListAdd>
+          <ListAdd onClick={() => setOpenModalAddList(true)}>
             <BiPlusCircle color="#cdccca"  fontSize={20} />
             <span>Adicionar outra lista</span>
           </ListAdd>
+          <AddList modalIsOpen={openModalAddList}  onRequestClose={() => setOpenModalAddList(false)} />
         </Container>
       </ListContext.Provider>
       <GlobalStyle />
