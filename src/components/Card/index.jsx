@@ -102,7 +102,7 @@ const Card = ({ content, id, index, listIndex, idList }) => {
       <S.Label color="#f8bd1c" className='label'></S.Label>
       <S.Label color="#891be8" className='label'></S.Label>
     </S.AreaLabel>
-    <S.AreaText onDoubleClick={() => setOpenModalEditCard(true)}>
+    <S.AreaText onClick={() => setOpenModalEditCard(true)}>
       {content}
     </S.AreaText>
     <EditContentCard modalIsOpen={openModalEditCard} onRequestClose={() => setOpenModalEditCard(false)} content={content} idCard={id} />
